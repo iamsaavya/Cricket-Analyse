@@ -5,7 +5,7 @@ try:
     mydb = mysql.connector.connect(
         host="localhost",  # Or the IP address of your MySQL server
         user="root",
-        #password="",
+        password="9977277199aaa",
         database="cricket"  # The name of your existing database
     )
     print("Connection established successfully!")

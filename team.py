@@ -1,65 +1,66 @@
 import ascii as a
 import mysql.connector
 
+def main():
+
+    try:
+        mydb = mysql.connector.connect(
+            host="localhost",  # Or the IP address of your MySQL server
+            user="root",
+            password="9977277199aaa",
+            database="cricket"  # The name of your existing database
+        )
+
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
 
 
-try:
-    mydb = mysql.connector.connect(
-        host="localhost",  # Or the IP address of your MySQL server
-        user="root",
-        password="",
-        database="cricket"  # The name of your existing database
-    )
-
-except mysql.connector.Error as err:
-    print(f"Error: {err}")
+    mycursor = mydb.cursor()
 
 
-mycursor = mydb.cursor()
+    BLACK = '\033[30m'
+    RED = '\033[31m'
+    GREEN = '\033[32m'
+    YELLOW = '\033[33m'
+    BLUE = '\033[34m'
+    MAGENTA = '\033[35m'
+    CYAN = '\033[36m'
+    WHITE = '\033[97m'
+    RESET = '\033[0m'
 
+    def team():
+        while True:
 
-BLACK = '\033[30m'
-RED = '\033[31m'
-GREEN = '\033[32m'
-YELLOW = '\033[33m'
-BLUE = '\033[34m'
-MAGENTA = '\033[35m'
-CYAN = '\033[36m'
-WHITE = '\033[97m'
-RESET = '\033[0m'
+                    x = str(input("Enter the teams you want to see : "))
 
-while True:
+                    mycursor.execute(f"SELECT name FROM players WHERE intlTeam = '{x}';")
 
-    t = []
-    x = str(input("Enter the teams you want to see : "))
+                    result = mycursor.fetchall()
 
-    mycursor.execute(f"SELECT name FROM players WHERE intlTeam = '{x}';")
+                    def flag():
+                        a.ascii(f'images/{x}.jpg', 40)
 
-    result = mycursor.fetchall()
+                    flag()
 
-    def flag():
-        a.ascii(f'images/{x}.jpg', 40)
+                    if x == "India" :
+                        print(BLUE + "INDIAN CRICKET TEAM" + RESET)
+                    elif x == "Pakistan":
+                        print(GREEN + "PAKISTAN CRICKET TEAM" + RESET)
+                    elif x=="Australia":
+                        print(YELLOW + "AUSTRALIAN CRICKET TEAM" + RESET)
+                    elif x == "South Africa":
+                        print(MAGENTA + "SOUTH AFRICAN CRICKET TEAM" + RESET)
+                    elif x == "New Zealand":
+                        print(CYAN + "NEW ZEALAND CRICKET TEAM" + RESET)
+                    elif x=="England":
+                        print(RED + "ENGLISH CRICKET TEAM" + RESET)
 
-    if __name__ == "__main__":
-        flag()
-
-    if x == "India" :
-        print(BLUE + "INDIAN CRICKET TEAM" + RESET)
-    elif x == "Pakistan":
-        print(GREEN + "PAKISTAN CRICKET TEAM" + RESET)
-    elif x=="Australia":
-        print(YELLOW + "AUSTRALIAN CRICKET TEAM" + RESET)
-    elif x == "South Africa":
-        print(MAGENTA + "SOUTH AFRICAN CRICKET TEAM" + RESET)
-    elif x == "New Zealand":
-        print(CYAN + "NEW ZEALAND CRICKET TEAM" + RESET)
-    elif x=="England":
-        print(RED + "ENGLISH CRICKET TEAM" + RESET)
+                    
+                    for i in result:
+                        print(i[0])
     
-    for i in result:
-        print(i[0])
+    team()
 
 
-
-
-
+if __name__ == "__main__":
+     main()
