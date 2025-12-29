@@ -1,6 +1,6 @@
 import team as t
 import player as p
-import hand_cricket as h
+import comparisons as c
 
 BLACK = '\033[30m'
 RED = '\033[31m'
@@ -20,25 +20,26 @@ print(MAGENTA + """
 
 def menu():
 
-    print(RESET + 
+        print(RESET + 
           
           """ Enter the integer corresponding to your preferred Analysis :
 
           1. Team-List
           2. Player Profile
-          3. Hand Cricket! (SPECIAL!)
+          3. Player Comparisons
 
           Press Any Other Key To Exit
             \n          
            """)
-    rohtak = int(input())
+        rohtak = int(input())
 
-    if rohtak==1:
-            t.main()
-    if rohtak==2:
+        if rohtak==1:
+                t.main()
+        if rohtak==2:
             p.player()
-    if rohtak==3:
-           h.main()
+
+        if rohtak ==3:
+                c.compare_players()
 
 menu()
 
